@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:rove/customs/button.dart';
+import 'package:rove/screens/driverLoginPage';
 import 'package:rove/screens/userLoginPage.dart';
-import 'package:rove/screens/onBoardingPage3.dart';
 import 'package:rove/utils/colors.dart';
 
-class BoardingPage2 extends StatelessWidget {
+class UserType extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,14 +17,14 @@ class BoardingPage2 extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Image(
-                image: AssetImage("assets/images/map.png"),
-                width: 250,
+                image: AssetImage("assets/images/userType.png"),
+                width: 300,
               ),
               SizedBox(
-                height: 50,
+                height: 30,
               ),
               Text(
-                "Spot your bus like never before",
+                "How do you want to continue as",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     color: AppColors.primaryColor,
@@ -35,43 +35,28 @@ class BoardingPage2 extends StatelessWidget {
                 height: 20,
               ),
               Text(
-                "We got you covered spotting your bus accurately over the map",
+                "You can login as a driver or a traveller, select one to continue ?",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    color: AppColors.secondaryColor,
+                    color: AppColors.primaryColor,
                     fontSize: 18,
                     fontWeight: FontWeight.w300),
               ),
               SizedBox(
-                height: 20,
+                height: 60,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    width: 10.0,
-                    height: 10.0,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: AppColors.primaryColor,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 6,
-                  ),
-                  Container(
-                    width: 10.0,
-                    height: 10.0,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: AppColors.secondaryColor,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                ],
-              ),
+              MyButton(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => LoginPageDriver(),
+                      ),
+                    );
+                  },
+                  myButtonColor: AppColors.primaryColor,
+                  myButtonText: "Driver 🚍",
+                  myButtonTextColor: Colors.white),
               SizedBox(
                 height: 20,
               ),
@@ -84,23 +69,8 @@ class BoardingPage2 extends StatelessWidget {
                       ),
                     );
                   },
-                  myButtonColor: Color.fromARGB(255, 219, 219, 219),
-                  myButtonText: "Skip",
-                  myButtonTextColor: AppColors.primaryColor),
-              SizedBox(
-                height: 20,
-              ),
-              MyButton(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => BoardingPage3(),
-                      ),
-                    );
-                  },
                   myButtonColor: AppColors.primaryColor,
-                  myButtonText: "Continue",
+                  myButtonText: "Traveller 🧍‍♂️",
                   myButtonTextColor: Colors.white)
             ],
           ),

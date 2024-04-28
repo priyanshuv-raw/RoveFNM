@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rove/customs/button.dart';
-import 'package:rove/screens/loginPage.dart';
+import 'package:rove/screens/userType.dart';
 import 'package:rove/utils/colors.dart';
 
 class BoardingPage3 extends StatelessWidget {
@@ -17,10 +17,10 @@ class BoardingPage3 extends StatelessWidget {
             children: [
               Image(
                 image: AssetImage("assets/images/buspass.png"),
-                width: 300,
+                width: 250,
               ),
               SizedBox(
-                height: 60,
+                height: 35,
               ),
               Text(
                 "No more physical Bus Pass required",
@@ -79,12 +79,14 @@ class BoardingPage3 extends StatelessWidget {
               ),
               MyButton(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => LoginPage(),
-                      ),
-                    );
+                    Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+              builder: (context) => UserType(
+                  ),
+            ),
+            (route) => false, // Clear the stack
+          );
                   },
                   myButtonColor: AppColors.primaryColor,
                   myButtonText: "Continue",

@@ -2,22 +2,23 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:rove/customs/button.dart';
 import 'package:rove/screens/homeScreen.dart';
+import 'package:rove/screens/driverHomeScreen.dart';
+import 'package:rove/screens/userType.dart';
 import 'package:rove/utils/colors.dart';
 import 'package:http/http.dart' as http;
 import 'package:rove/utils/config.dart';
 import 'package:rove/utils/userData.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class LoginPage extends StatefulWidget {
+class LoginPageDriver extends StatefulWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _LoginPageDriverState createState() => _LoginPageDriverState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPageDriverState extends State<LoginPageDriver> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   bool _isNotValidate = false;
-  bool userIsLoggedIn = false;
   bool _isLoading = false;
   String _errorMessage = '';
   late SharedPreferences preferences;
@@ -26,25 +27,6 @@ class _LoginPageState extends State<LoginPage> {
   void initState() {
     super.initState();
     initSharedPreferences();
-  }
-
-  void checkUserLoginStatus() async {
-    userIsLoggedIn = UserData.userIsLoggedIn;
-    if (userIsLoggedIn) {
-      // Navigate to the HomeScreen
-      Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(builder: (context) => HomeScreen()),
-        (route) => false, // Clear the stack
-      );
-    } else {
-      // Navigate to the LoginPage
-      Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(builder: (context) => LoginPage()),
-        (route) => false, // Clear the stack
-      );
-    }
   }
 
   void initSharedPreferences() async {
@@ -69,7 +51,6 @@ class _LoginPageState extends State<LoginPage> {
 
       if (response.statusCode == 200) {
         var jsonResponse = jsonDecode(response.body);
-        userIsLoggedIn = true;
         print(jsonResponse);
 
         var userEmail =
@@ -117,19 +98,15 @@ class _LoginPageState extends State<LoginPage> {
             refreshToken != null &&
             userEmail.isNotEmpty &&
             userName.isNotEmpty) {
-          userIsLoggedIn = true;
           print("RESPONSE CODE - 200");
+
+          // var SharedPref = await SharedPreferences.getInstance();
+          // SharedPref.setBool(MyAppState.KEY_LOGIN_STATUS, true);
 
           Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
-              builder: (context) => HomeScreen(
-                // accessToken: accessToken,
-                // refreshToken: refreshToken,
-                // email: userEmail,
-                // name: userName,
-              ),
-            ),
+              builder: (context) => DriverHomeScreen(),),
             (route) => false, // Clear the stack
           );
         } else {
@@ -188,10 +165,16 @@ class _LoginPageState extends State<LoginPage> {
                               fontWeight: FontWeight.w600),
                         ),
                         SizedBox(
-                          height: 20,
+                          height: 50,
                         ),
-                        Image(
-                          image: AssetImage("assets/images/login.png"),
+                        Center(
+                          child: Image(
+                            image: AssetImage("assets/images/driverLogin.png"),
+                            width: 250,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 50,
                         ),
                         Container(
                           width: MediaQuery.of(context).size.width,
@@ -233,7 +216,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                         SizedBox(
-                          height: 20,
+                          height: 10,
                         ),
                         if (_errorMessage.isNotEmpty)
                           Text(
@@ -252,13 +235,21 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => UserType(),
+                        ),
+                        (route) => false, // Clear the stack
+                      );
+                    },
                     style: TextButton.styleFrom(
                       // padding: EdgeInsets.fromLTRB(130, 0, 0, 0),
                       shape: RoundedRectangleBorder(),
                     ),
                     child: Text(
-                      'Forgot Password',
+                      'Change Login Type',
                       style:
                           TextStyle(fontSize: 15, fontStyle: FontStyle.italic),
                     ),

@@ -3,7 +3,7 @@ import 'package:rove/screens/PrivacyPolicyPage.dart';
 import 'package:rove/screens/aboutUsPage.dart';
 import 'package:rove/screens/contactUsPage.dart';
 import 'package:rove/screens/eBusPassPage.dart';
-import 'package:rove/screens/onBoardingPage1.dart';
+import 'package:rove/screens/userType.dart';
 import 'package:rove/utils/colors.dart';
 import 'package:rove/utils/textTheme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -14,7 +14,7 @@ class Settings extends StatelessWidget {
     await prefs.clear(); // Clear the shared preferences
     Navigator.pushAndRemoveUntil(
       context,
-      MaterialPageRoute(builder: (context) => BoardingPage1()),
+      MaterialPageRoute(builder: (context) => UserType()),
       (route) => false,
     );
   }
