@@ -14,5 +14,7 @@ class UserData {
   static String accessExpires = '';
   static String refreshToken = '';
   static String refreshExpires = '';
+  static String userAllotedBus = '';
+  static String userDept = '';
   static bool userIsLoggedIn = false;
 }

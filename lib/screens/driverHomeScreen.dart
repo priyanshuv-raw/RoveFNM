@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:rove/customs/todaysRide.dart';
+import 'package:rove/screens/driverLoginPage.dart';
+import 'package:rove/screens/mapScreen.dart';
 import 'package:rove/screens/userType.dart';
 import 'package:rove/utils/colors.dart';
 import 'package:rove/utils/textTheme.dart';
@@ -12,6 +18,22 @@ class DriverHomeScreen extends StatefulWidget {
 }
 
 class _DriverHomeScreenState extends State<DriverHomeScreen> {
+  LatLng mylatlong = LatLng(25.34961, 81.86078);
+  String address = 'Lucknow';
+
+  setMarker(LatLng value) async {
+    List<Placemark> result =
+        await placemarkFromCoordinates(value.latitude, value.longitude);
+
+    if (result.isNotEmpty) {
+      address =
+          '${result[0].name},${result[0].locality}${result[0].administrativeArea}';
+    }
+
+    setState(() {});
+    Fluttertoast.showToast(msg: '📍' + address);
+  }
+
   Future<void> _logout(BuildContext context) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.clear(); // Clear the shared preferences
@@ -181,15 +203,41 @@ class _DriverHomeScreenState extends State<DriverHomeScreen> {
                   ),
                   TodaysRide(
                       myFromLocation: "UCER",
-                      myToLocation: UserData.userStoppage,
+                      myToLocation: "Shantipuram",
                       myBusNumber: "B2",
                       myBusETA: "07:50 AM"),
                   SizedBox(
                     height: 20,
                   ),
-                  Image(image: AssetImage("assets/images/map1.png")),
-                  SizedBox(
-                    height: 10,
+                  GestureDetector(
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 600,
+                      child: GoogleMap(
+                        initialCameraPosition: CameraPosition(
+                          target: mylatlong,
+                          zoom: 15,
+                        ),
+                        markers: {
+                          Marker(
+                            infoWindow: InfoWindow(title: address),
+                            position: mylatlong,
+                            draggable: true,
+                            markerId: MarkerId('1'),
+                            onDragEnd: (value) {
+                              setMarker(value);
+                            },
+                          ),
+                        },
+                      ),
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => GoogleMapsScreen()),
+                      );
+                    },
                   ),
                 ],
               ),

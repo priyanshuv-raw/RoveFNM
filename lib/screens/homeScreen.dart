@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:rove/customs/customAppBar.dart';
 import 'package:rove/customs/todaysRide.dart';
+import 'package:rove/screens/mapScreen.dart';
 import 'package:rove/screens/menuPage.dart';
 import 'package:rove/screens/notificationPage.dart';
 import 'package:rove/utils/colors.dart';
@@ -9,23 +13,28 @@ import 'package:rove/utils/userData.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {
-  // final String accessToken;
-  // final String refreshToken;
-  // final String email;
-  // final String name;
-
-  // HomeScreen({
-  //   required this.accessToken,
-  //   required this.refreshToken,
-  //   required this.email,
-  //   required this.name,
-  // });
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+   LatLng mylatlong = LatLng(25.34961, 81.86078);
+  String address = 'Lucknow';
+
+  setMarker(LatLng value) async {
+    List<Placemark> result =
+        await placemarkFromCoordinates(value.latitude, value.longitude);
+
+    if (result.isNotEmpty) {
+      address =
+          '${result[0].name},${result[0].locality}${result[0].administrativeArea}';
+    }
+
+    setState(() {});
+    Fluttertoast.showToast(msg: '📍' + address);
+  }
+
   late SharedPreferences preferences;
 
   @override
@@ -72,12 +81,41 @@ class _HomeScreenState extends State<HomeScreen> {
                   TodaysRide(
                       myFromLocation: "UCER",
                       myToLocation: UserData.userStoppage,
-                      myBusNumber: "B2",
+                      myBusNumber: UserData.userAllotedBus,
                       myBusETA: "07:50 AM"),
                   SizedBox(
                     height: 20,
                   ),
-                  Image(image: AssetImage("assets/images/map1.png")),
+                  GestureDetector(
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 600,
+                      child: GoogleMap(
+                        initialCameraPosition: CameraPosition(
+                          target: mylatlong,
+                          zoom: 15,
+                        ),
+                        markers: {
+                          Marker(
+                            infoWindow: InfoWindow(title: address),
+                            position: mylatlong,
+                            draggable: true,
+                            markerId: MarkerId('1'),
+                            onDragEnd: (value) {
+                              setMarker(value);
+                            },
+                          ),
+                        },
+                      ),
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => GoogleMapsScreen()),
+                      );
+                    },
+                  ),
                   SizedBox(
                     height: 10,
                   ),

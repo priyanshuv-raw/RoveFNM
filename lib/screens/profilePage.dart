@@ -32,9 +32,9 @@ class ProfilePage extends StatelessWidget {
                     ProfileDetails(
                         myUserName: UserData.userName,
                         myUserStudentId: UserData.userRoll,
-                        myUserAllotedBus: "B2",
+                        myUserAllotedBus: UserData.userAllotedBus,
                         myUserCollege: "UCER",
-                        myUserDepartment: "CSE",
+                        myUserDepartment: UserData.userDept,
                         myUserYear: UserData.userYear.toString(),
                         myUserPhoneNumber: UserData.userPhone,
                         myUserEmergencyContact: "90000 00000",

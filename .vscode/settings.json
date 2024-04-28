@@ -1,4 +1,4 @@
 {
   "cSpell.words": ["buspass", "LTRB"],
-  "java.configuration.updateBuildConfiguration": "interactive"
+  "java.configuration.updateBuildConfiguration": "automatic"
 }

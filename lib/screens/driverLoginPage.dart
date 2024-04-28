@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:rove/customs/button.dart';
-import 'package:rove/screens/homeScreen.dart';
 import 'package:rove/screens/driverHomeScreen.dart';
 import 'package:rove/screens/userType.dart';
 import 'package:rove/utils/colors.dart';
@@ -58,41 +57,35 @@ class _LoginPageDriverState extends State<LoginPageDriver> {
         var userName =
             jsonResponse['user'] != null ? jsonResponse['user']['name'] : '';
 
-        // Store user-specific data in shared preferences
+        // // Store user-specific data in shared preferences
         var accessToken = jsonResponse['tokens']['access']['token'];
         var refreshToken = jsonResponse['tokens']['refresh']['token'];
+
         preferences.setString('userRole', jsonResponse['user']['role']);
         preferences.setBool(
             'isEmailVerified', jsonResponse['user']['isEmailVerified']);
-        preferences.setString('userCourse', jsonResponse['user']['course']);
-        preferences.setString('userBranch', jsonResponse['user']['branch']);
-        preferences.setInt('userYear', jsonResponse['user']['year']);
-        preferences.setString('userRoll', jsonResponse['user']['roll']);
+
         preferences.setString('userPhone', jsonResponse['user']['phone']);
-        preferences.setString('userStoppage', jsonResponse['user']['stoppage']);
+
         preferences.setString('userId', jsonResponse['user']['id']);
         preferences.setString(
             'accessExpires', jsonResponse['tokens']['access']['expires']);
         preferences.setString(
             'refreshExpires', jsonResponse['tokens']['refresh']['expires']);
 
-        // Update the UserData class
+        // // Update the UserData class
         UserData.userRole = jsonResponse['user']['role'];
         UserData.isEmailVerified = jsonResponse['user']['isEmailVerified'];
         UserData.userEmail = jsonResponse['user']['email'];
         UserData.userName = jsonResponse['user']['name'];
-        UserData.userCourse = jsonResponse['user']['course'];
-        UserData.userBranch = jsonResponse['user']['branch'];
-        UserData.userYear = jsonResponse['user']['year'];
-        UserData.userRoll = jsonResponse['user']['roll'];
         UserData.userPhone = jsonResponse['user']['phone'];
-        UserData.userStoppage = jsonResponse['user']['stoppage'];
         UserData.userId = jsonResponse['user']['id'];
-        UserData.accessToken = accessToken;
+        UserData.accessToken = jsonResponse['tokens']['access']['token'];
         UserData.accessExpires = jsonResponse['tokens']['access']['expires'];
-        UserData.refreshToken = refreshToken;
+        UserData.refreshToken = jsonResponse['tokens']['refresh']['token'];
         UserData.refreshExpires = jsonResponse['tokens']['refresh']['expires'];
         UserData.userIsLoggedIn = true;
+        print(UserData.userEmail);
 
         if (accessToken != null &&
             refreshToken != null &&
@@ -106,7 +99,8 @@ class _LoginPageDriverState extends State<LoginPageDriver> {
           Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
-              builder: (context) => DriverHomeScreen(),),
+              builder: (context) => DriverHomeScreen(),
+            ),
             (route) => false, // Clear the stack
           );
         } else {

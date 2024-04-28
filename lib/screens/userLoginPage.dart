@@ -74,8 +74,14 @@ class _LoginPageTravellerState extends State<LoginPageTraveller> {
             'accessExpires', jsonResponse['tokens']['access']['expires']);
         preferences.setString(
             'refreshExpires', jsonResponse['tokens']['refresh']['expires']);
+        preferences.setString(
+            'allotedBus', jsonResponse['bus']['name']);
+        preferences.setString(
+            'userDept', jsonResponse['user']['course']);
 
         // Update the UserData class
+        UserData.userDept = jsonResponse['user']['course'];
+        UserData.userAllotedBus = jsonResponse['bus']['name'];
         UserData.userRole = jsonResponse['user']['role'];
         UserData.isEmailVerified = jsonResponse['user']['isEmailVerified'];
         UserData.userEmail = jsonResponse['user']['email'];
@@ -105,12 +111,7 @@ class _LoginPageTravellerState extends State<LoginPageTraveller> {
           Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
-              builder: (context) => HomeScreen(
-                  // accessToken: accessToken,
-                  // refreshToken: refreshToken,
-                  // email: userEmail,
-                  // name: userName,
-                  ),
+              builder: (context) => HomeScreen(),
             ),
             (route) => false, // Clear the stack
           );
