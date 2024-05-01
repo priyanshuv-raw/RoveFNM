@@ -3,6 +3,7 @@ import 'package:rove/screens/menuPage.dart';
 import 'package:rove/screens/notificationPage.dart';
 import 'package:rove/screens/profilePage.dart';
 import 'package:rove/utils/colors.dart';
+import 'package:rove/utils/userData.dart';
 
 class CustomAppBar extends StatelessWidget {
   final String myUserImage;
@@ -46,13 +47,13 @@ class CustomAppBar extends StatelessWidget {
       backgroundColor: AppColors.primaryColor,
       centerTitle: false,
       title: Text(
-        "Hi There 👋🏻",
+        "Hi, " + UserData.userName + " 👋🏻",
         style: TextStyle(
             color: Colors.white, fontSize: 18, fontWeight: FontWeight.w600),
       ),
       actions: [
         IconButton(
-            onPressed:() {
+          onPressed: () {
             Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(builder: (context) => NotificationPage()),
               (route) => route.isFirst,
@@ -62,12 +63,14 @@ class CustomAppBar extends StatelessWidget {
           color: Colors.white,
         ),
         IconButton(
-            onPressed:() {
-            Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (context) => MenuPage()),
-              (route) => route.isFirst,
-            );
-          }, icon: Icon(Icons.menu), color: Colors.white),
+            onPressed: () {
+              Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: (context) => MenuPage()),
+                (route) => route.isFirst,
+              );
+            },
+            icon: Icon(Icons.menu),
+            color: Colors.white),
       ],
     );
   }
@@ -80,38 +83,3 @@ class CustomAppBar extends StatelessWidget {
 
 
 
-
-
-
-//       appBar: AppBar(
-//         leadingWidth: 100,
-//         leading: IconButton(
-//           onPressed: () {},
-//           icon: CircleAvatar(
-//             radius: 35,
-//             backgroundImage: AssetImage(myUserImage),
-//           ),
-//         ),
-//         backgroundColor: AppColors.primaryColor,
-//         toolbarHeight: 100,
-//         centerTitle: false,
-//         title: Text(
-//           "Hey There 👋🏻",
-//           style: TextStyle(
-//               color: Colors.white, fontSize: 18, fontWeight: FontWeight.w600),
-//         ),
-//         actions: [
-//           IconButton(
-//             onPressed: () {},
-//             icon: Icon(Icons.credit_card_outlined),
-//             color: Colors.white,
-//           ),
-//           IconButton(
-//               onPressed: () {},
-//               icon: Icon(Icons.settings),
-//               color: Colors.white),
-//         ],
-//       ),
-//     );
-//   }
-// }

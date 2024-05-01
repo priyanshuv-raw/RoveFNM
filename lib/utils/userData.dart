@@ -2,7 +2,7 @@ class UserData {
   static String userRole = '';
   static bool isEmailVerified = false;
   static String userEmail = '';
-  static String userName = '';
+  static String userName = 'Priyanshu Kumar';
   static String userCourse = '';
   static String userBranch = '';
   static int userYear = 0;

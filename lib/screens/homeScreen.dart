@@ -7,19 +7,19 @@ import 'package:rove/customs/todaysRide.dart';
 import 'package:rove/screens/mapScreen.dart';
 import 'package:rove/screens/menuPage.dart';
 import 'package:rove/screens/notificationPage.dart';
+import 'package:rove/screens/testScreen.dart';
 import 'package:rove/utils/colors.dart';
 import 'package:rove/utils/textTheme.dart';
 import 'package:rove/utils/userData.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {
-
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-   LatLng mylatlong = LatLng(25.34961, 81.86078);
+  LatLng mylatlong = LatLng(25.34961, 81.86078);
   String address = 'Lucknow';
 
   setMarker(LatLng value) async {
@@ -78,47 +78,61 @@ class _HomeScreenState extends State<HomeScreen> {
                   SizedBox(
                     height: 20,
                   ),
+                  TestScreen(),
+                  SizedBox(
+                    height: 20,
+                  ),
                   TodaysRide(
                       myFromLocation: "UCER",
-                      myToLocation: UserData.userStoppage,
+                      myToLocation: "ShantiPuram",
                       myBusNumber: UserData.userAllotedBus,
                       myBusETA: "07:50 AM"),
                   SizedBox(
                     height: 20,
                   ),
-                  GestureDetector(
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 600,
-                      child: GoogleMap(
-                        initialCameraPosition: CameraPosition(
-                          target: mylatlong,
-                          zoom: 15,
-                        ),
-                        markers: {
-                          Marker(
-                            infoWindow: InfoWindow(title: address),
-                            position: mylatlong,
-                            draggable: true,
-                            markerId: MarkerId('1'),
-                            onDragEnd: (value) {
-                              setMarker(value);
-                            },
-                          ),
-                        },
-                      ),
-                    ),
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => GoogleMapsScreen()),
-                      );
-                    },
-                  ),
+                  // GestureDetector(
+                  //   child: Container(
+                  //     width: MediaQuery.of(context).size.width,
+                  //     height: 600,
+                  //     child: GoogleMap(
+                  //       initialCameraPosition: CameraPosition(
+                  //         target: mylatlong,
+                  //         zoom: 15,
+                  //       ),
+                  //       markers: {
+                  //         Marker(
+                  //           infoWindow: InfoWindow(title: address),
+                  //           position: mylatlong,
+                  //           draggable: true,
+                  //           markerId: MarkerId('1'),
+                  //           onDragEnd: (value) {
+                  //             setMarker(value);
+                  //           },
+                  //         ),
+                  //       },
+                  //     ),
+                  //   ),
+                  //   onTap: () {
+                  //     Navigator.push(
+                  //       context,
+                  //       MaterialPageRoute(
+                  //           builder: (context) => GoogleMapsScreen()),
+                  //     );
+                  //   },
+                  // ),
                   SizedBox(
-                    height: 10,
+                    height: 20,
                   ),
+                  Center(
+                    child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => GoogleMapsScreen()));
+                        },
+                        child: Text("Click to view")),
+                  )
                 ],
               ),
             )

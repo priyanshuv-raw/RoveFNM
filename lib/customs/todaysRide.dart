@@ -101,7 +101,7 @@ class TodaysRide extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  myBusNumber,
+                  ("Bus - $myBusNumber"),
                   style: const TextStyle(
                       color: AppColors.primaryColor,
                       fontSize: 18,

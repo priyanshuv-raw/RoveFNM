@@ -239,6 +239,19 @@ class _DriverHomeScreenState extends State<DriverHomeScreen> {
                       );
                     },
                   ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Center(
+                    child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => GoogleMapsScreen()));
+                        },
+                        child: Text("Click to view")),
+                  )
                 ],
               ),
             )
