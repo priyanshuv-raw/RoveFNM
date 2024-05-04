@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:rove/customs/button.dart';
 import 'package:rove/customs/todaysRide.dart';
-import 'package:rove/screens/driverLoginPage.dart';
+import 'package:rove/screens/driverRouteMapPage.dart';
 import 'package:rove/screens/mapScreen.dart';
 import 'package:rove/screens/userType.dart';
 import 'package:rove/utils/colors.dart';
@@ -39,7 +39,9 @@ class _DriverHomeScreenState extends State<DriverHomeScreen> {
     await prefs.clear(); // Clear the shared preferences
     Navigator.pushAndRemoveUntil(
       context,
-      MaterialPageRoute(builder: (context) => UserType()),
+      MaterialPageRoute(
+        builder: (context) => UserType(),
+      ),
       (route) => false,
     );
   }
@@ -116,9 +118,7 @@ class _DriverHomeScreenState extends State<DriverHomeScreen> {
             ListTile(
               leading: Icon(Icons.location_on),
               title: Text('Start Location Sharing'),
-              onTap: () {
-                // Navigate to the home page
-              },
+              onTap: () {},
             ),
             ListTile(
               leading: Icon(Icons.location_off),
@@ -131,7 +131,6 @@ class _DriverHomeScreenState extends State<DriverHomeScreen> {
               leading: Icon(Icons.logout),
               title: Text('Logout'),
               onTap: () {
-                //
                 showDialog(
                   context: context,
                   builder: (context) {
@@ -180,83 +179,94 @@ class _DriverHomeScreenState extends State<DriverHomeScreen> {
                     );
                   },
                 );
-                // Navigate to the home page
               },
             ),
-            // Add more menu items as needed
           ],
         ),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  MyTextSpace(
-                      myMainText: "Today's Ride",
-                      myMainTextColor: AppColors.primaryColor),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TodaysRide(
-                      myFromLocation: "UCER",
-                      myToLocation: "Shantipuram",
-                      myBusNumber: "B2",
-                      myBusETA: "07:50 AM"),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  GestureDetector(
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 600,
-                      child: GoogleMap(
-                        initialCameraPosition: CameraPosition(
-                          target: mylatlong,
-                          zoom: 15,
-                        ),
-                        markers: {
-                          Marker(
-                            infoWindow: InfoWindow(title: address),
-                            position: mylatlong,
-                            draggable: true,
-                            markerId: MarkerId('1'),
-                            onDragEnd: (value) {
-                              setMarker(value);
-                            },
-                          ),
-                        },
-                      ),
-                    ),
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => GoogleMapsScreen()),
-                      );
-                    },
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Center(
-                    child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => GoogleMapsScreen()));
-                        },
-                        child: Text("Click to view")),
-                  )
-                ],
+        child: Padding(
+          padding: EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              MyTextSpace(
+                  myMainText: "Today's Ride",
+                  myMainTextColor: AppColors.primaryColor),
+              SizedBox(
+                height: 20,
               ),
-            )
-          ],
+              TodaysRide(
+                  myStartLocation: "UCER",
+                  myEndLocation: "Shantipuram",
+                  myDepartureTime: "07:50 a.m.",
+                  myArrivalTime: "04:30 p.m.",
+                  myBusSeats: "K3"),
+              SizedBox(
+                height: 20,
+              ),
+              MyButton(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DriverRouteMapPage(),
+                      ),
+                    );
+                  },
+                  myButtonColor: AppColors.primaryColor,
+                  myButtonText: "Go to Route Map",
+                  myButtonTextColor: Colors.white),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: 240,
+                child: GoogleMap(
+                  initialCameraPosition: CameraPosition(
+                    target: mylatlong,
+                    zoom: 15,
+                  ),
+                  markers: {
+                    Marker(
+                      infoWindow: InfoWindow(title: address),
+                      position: mylatlong,
+                      draggable: true,
+                      markerId: MarkerId('1'),
+                      onDragEnd: (value) {
+                        setMarker(value);
+                      },
+                    ),
+                  },
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+            ],
+          ),
         ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => GoogleMapsScreen(),
+            ),
+          );
+        },
+        child: Icon(
+          Icons.keyboard_double_arrow_right,
+          color: Colors.white,
+        ),
+        backgroundColor: AppColors.primaryColor, // Set the background color
+        elevation: 5, // Set the elevation
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(50.0), // Set the border radius
+        ), // Shift the button 10 pixels to the left
       ),
     );
   }

@@ -1,62 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rove/screens/driverHomeScreen.dart';
 import 'package:rove/screens/homeScreen.dart';
-import 'package:rove/screens/onBoardingPage1.dart';
-
-// void main() {
-//   runApp(MyApp());
-// }
-
-// class MyApp extends StatefulWidget {
-//   const MyApp({Key? key}) : super(key: key);
-
-//   @override
-//   MyAppState createState() => MyAppState();
-// }
-
-// class MyAppState extends State<MyApp> {
-//   static const String KEY_LOGIN_STATUS = 'loginStatus';
-
-//   @override
-//   void initState() {
-//     super.initState();
-//     checkLoginStatus();
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Rove',
-//       debugShowCheckedModeBanner: false,
-//       home: LoginPage(),
-//     );
-//   }
-
-//   void checkLoginStatus() async {
-//     SharedPreferences pref = await SharedPreferences.getInstance();
-//     bool? isLoggedIn = pref.getBool(KEY_LOGIN_STATUS);
-//     print("condition is ");
-//     print(isLoggedIn);
-
-//     if (isLoggedIn != null) {
-//       if (isLoggedIn == true) {
-//         print("Navigator Executed");
-//         Navigator.pushReplacement(
-//           context,
-//           MaterialPageRoute(builder: (context) => HomeScreen()),
-//         );
-//       } else {
-//         print("Else Navigator");
-//         Navigator.pushReplacement(
-//           context,
-//           MaterialPageRoute(builder: (context) => LoginPage()),
-//         );
-//       }
-//     }
-//   }
-// }
-
-// a;kjsdhjkfgahsd;fjkhasd;f
 
 void main() {
   runApp(const MyApp());
@@ -92,6 +36,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: HomeScreen());
+    return Scaffold(body: DriverHomeScreen());
   }
 }

@@ -1,120 +1,100 @@
 import 'package:flutter/material.dart';
 import 'package:rove/utils/colors.dart';
+import 'package:rove/utils/textTheme.dart';
 
 class TodaysRide extends StatelessWidget {
-  final String myFromLocation;
-  final String myToLocation;
-  final String myBusNumber;
-  final String myBusETA;
+  final String myStartLocation;
+  final String myEndLocation;
+  final String myDepartureTime;
+  final String myArrivalTime;
+  final String myBusSeats;
 
   const TodaysRide({
     super.key,
-    required this.myFromLocation,
-    required this.myToLocation,
-    required this.myBusNumber,
-    required this.myBusETA,
+    required this.myStartLocation,
+    required this.myEndLocation,
+    required this.myDepartureTime,
+    required this.myArrivalTime,
+    required this.myBusSeats,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width * .9,
-      height: 187,
+      width: MediaQuery.of(context).size.width * 0.9,
+      height: 237,
       decoration: BoxDecoration(
-        color: AppColors.tertiaryColor,
+        color: Colors.white,
         borderRadius: BorderRadius.circular(20.0),
-        border: Border.all(
-          color: AppColors.primaryColor, // Border color
-          width: 2.0, // Border width
-        ),
+        border: Border.all(width: 2.0),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(25),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Container(
-            //   height: 10,
-            //   width: 10,
-            //   color: AppColors.accentColor,
-            // ),
-            Column(
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const SizedBox(
-                  height: 4,
-                ),
-                Container(
-                  width: 17,
-                  height: 17,
-                  decoration: BoxDecoration(
-                    color: AppColors.primaryColor,
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  height: 70,
-                  width: 2,
+                MyTextSpace(
+                    myMainText: "⚫️ $myStartLocation",
+                    myMainTextColor: AppColors.primaryColor),
+                MyTextSpace(
+                    myMainText: "Dep - $myDepartureTime",
+                    myMainTextColor: AppColors.primaryColor)
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                height: 50,
+                width: 2,
+                color: AppColors.primaryColor,
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                MyTextSpace(
+                    myMainText: "⚫️ $myEndLocation",
+                    myMainTextColor: AppColors.primaryColor),
+                MyTextSpace(
+                    myMainText: "ETA - $myArrivalTime",
+                    myMainTextColor: AppColors.primaryColor)
+              ],
+            ),
+            SizedBox(
+              height: 26,
+            ),
+            Container(
+              height: 2,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                color: AppColors.primaryColor,
+                borderRadius: BorderRadius.circular(100.0),
+                border: Border.all(width: 1.0),
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Icon(
                   color: AppColors.primaryColor,
+                  Icons.train,
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  width: 17,
-                  height: 17,
-                  decoration: BoxDecoration(
-                    color: AppColors.primaryColor,
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                ),
+                MyTextSpace(
+                    myMainText: "Bus Number",
+                    myMainTextColor: AppColors.primaryColor),
+                MyTextSpace(
+                    myMainText: "$myBusSeats",
+                    myMainTextColor: AppColors.primaryColor),
               ],
             ),
-            const SizedBox(
-              width: 5,
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  myFromLocation,
-                  style: const TextStyle(
-                      color: AppColors.primaryColor,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600),
-                ),
-                Text(
-                  myToLocation,
-                  style: const TextStyle(
-                      color: AppColors.primaryColor,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600),
-                ),
-              ],
-            ),
-            const SizedBox(width: 60),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  ("Bus - $myBusNumber"),
-                  style: const TextStyle(
-                      color: AppColors.primaryColor,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600),
-                ),
-                Text(
-                  myBusETA,
-                  style: const TextStyle(
-                      color: AppColors.primaryColor,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600),
-                ),
-              ],
+            SizedBox(
+              height: 20,
             ),
           ],
         ),
