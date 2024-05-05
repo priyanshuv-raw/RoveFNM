@@ -48,6 +48,10 @@ class _LoginPageTravellerState extends State<LoginPageTraveller> {
           headers: {"Content-Type": "application/json"},
           body: jsonEncode(reqBody));
 
+      // print("fasdf");
+      // var jsonResponse2 = jsonDecode(response2.body);
+      // print(jsonResponse2);
+
       if (response.statusCode == 200) {
         var jsonResponse = jsonDecode(response.body);
         print(jsonResponse);
@@ -74,10 +78,8 @@ class _LoginPageTravellerState extends State<LoginPageTraveller> {
             'accessExpires', jsonResponse['tokens']['access']['expires']);
         preferences.setString(
             'refreshExpires', jsonResponse['tokens']['refresh']['expires']);
-        preferences.setString(
-            'allotedBus', jsonResponse['bus']['name']);
-        preferences.setString(
-            'userDept', jsonResponse['user']['course']);
+        preferences.setString('allotedBus', jsonResponse['bus']['name']);
+        preferences.setString('userDept', jsonResponse['user']['course']);
 
         // Update the UserData class
         UserData.userDept = jsonResponse['user']['course'];

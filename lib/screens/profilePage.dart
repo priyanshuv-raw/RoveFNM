@@ -38,7 +38,7 @@ class ProfilePage extends StatelessWidget {
                         myUserYear: UserData.userYear.toString(),
                         myUserPhoneNumber: UserData.userPhone,
                         myUserEmergencyContact: "90000 00000",
-                        myUserAddress: UserData.userStoppage),
+                        myUserAddress: "MNIT"),
                   ],
                 ),
               )

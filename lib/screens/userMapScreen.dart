@@ -3,14 +3,14 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart' as location;
 import 'package:location/location.dart';
 
-class GoogleMapsScreen extends StatefulWidget {
-  const GoogleMapsScreen({Key? key});
+class userMapScreen extends StatefulWidget {
+  const userMapScreen({Key? key});
 
   @override
-  State<GoogleMapsScreen> createState() => _GoogleMapsScreenState();
+  State<userMapScreen> createState() => _userMapScreenState();
 }
 
-class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
+class _userMapScreenState extends State<userMapScreen> {
   location.Location _locationController = new location.Location();
   LatLng? _currentP;
 
@@ -36,6 +36,13 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
                 Marker(
                   markerId: MarkerId("CurrentLocation"),
                   icon: BitmapDescriptor.defaultMarker,
+                  position: _currentP!,
+                ),
+                Marker(
+                  markerId: MarkerId("CurrentLocation"),
+                  icon: BitmapDescriptor.defaultMarkerWithHue(
+                      BitmapDescriptor.hueYellow),
+                  infoWindow: InfoWindow(title: "Your Bus"),
                   position: _currentP!,
                 ),
                 // Marker(

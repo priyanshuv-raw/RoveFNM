@@ -199,8 +199,8 @@ class _DriverHomeScreenState extends State<DriverHomeScreen> {
               TodaysRide(
                   myStartLocation: "UCER",
                   myEndLocation: "Shantipuram",
-                  myDepartureTime: "07:50 a.m.",
-                  myArrivalTime: "04:30 p.m.",
+                  myDepartureTime: "04:20 p.m.",
+                  myArrivalTime: "06:00 p.m.",
                   myBusSeats: "K3"),
               SizedBox(
                 height: 20,

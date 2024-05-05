@@ -41,7 +41,7 @@ class EBusPassPage extends StatelessWidget {
                         myUserDepartment: UserData.userDept,
                         myUserBranch: UserData.userBranch,
                         myUserPhoneNumber: UserData.userPhone,
-                        myUserAddress: UserData.userStoppage,
+                        myUserAddress: "MNIT",
                         myUserAllotedBus: UserData.userAllotedBus,
                         myUserImage: "assets/images/priyanshu.jpg"),
                   ],

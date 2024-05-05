@@ -7,7 +7,7 @@ class PrivacyPolicy extends StatelessWidget {
     return SingleChildScrollView(
       child: Container(
           width: MediaQuery.of(context).size.width * .9,
-          height: 1400,
+          height: 2650,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(20.0),
@@ -20,7 +20,58 @@ class PrivacyPolicy extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.all(20),
             child: Text(
-              "Irure veniam dolore pariatur ad ullamco fugiat est exercitation culpa excepteur. Quis culpa ut amet veniam duis adipisicing eu quis. Culpa labore labore enim sunt labore in duis excepteur. Consectetur et ex sint aute irure duis velit id culpa in dolor. Qui enim sint nulla veniam anim dolor aliqua reprehenderit nulla Lorem culpa quis sunt ex. Commodo cillum minim cupidatat ut. Et qui sint ea cupidatat officia mollit reprehenderit reprehenderit laborum est do consequat voluptate voluptate.Qui qui ex aliquip exercitation irure exercitation qui consectetur culpa in proident. Cupidatat incididunt sit mollit dolore voluptate mollit qui do irure nostrud irure ullamco ipsum cillum. Qui voluptate aute id aliquip adipisicing voluptate aliquip minim proident culpa.Id laborum nostrud nisi consectetur sint culpa id dolore pariatur id aute. Laboris incididunt cillum aute sit ut do qui ad ea non adipisicing enim minim consectetur. Sint non amet id anim magna labore aliquip id elit eiusmod aliquip est. Ex velit id magna culpa anim deserunt in. Eiusmod aliquip consectetur occaecat eu pariatur culpa ut anim Lorem nisi cillum consequat. Voluptate reprehenderit reprehenderit fugiat aliquip veniam exercitation Lorem sit nostrud qui minim et labore. Ipsum sint pariatur in in.Esse anim fugiat sit mollit ex ut. Sint excepteur eiusmod duis enim enim. Quis eu ullamco ex deserunt velit consequat enim sint do ea non id nisi elit. Do minim Lorem nisi sint tempor consectetur anim deserunt qui eu ex. Velit aute nulla amet ut enim laboris tempor officia exercitation aliquip nostrud laboris. Est proident ea tempor id ut ullamco. Duis minim minim eu aute deserunt culpa.Exercitation nisi esse dolore voluptate. Excepteur excepteur exercitation fugiat nostrud culpa enim est eiusmod non. Consequat id eu eu esse incididunt qui laboris excepteur cillum officia magna laborum ex enim.Nostrud ea elit dolor est duis consectetur laboris amet deserunt. Ex adipisicing officia magna commodo amet in velit reprehenderit nostrud commodo. Tempor mollit eu eu eu aliqua aute id labore excepteur excepteur consectetur pariatur duis aliquip.",
+              '''Rove - Travel Made Easy
+              
+Introduction
+
+At Rove, we are committed to protecting the privacy and security of our users' personal information. This privacy policy outlines how we collect, use, and protect the personal information of our users.
+
+Information We Collect
+
+Rove collects the following types of personal information from our users:
+
+1. Name and Contact Information : We collect users' names and contact information, including email addresses and phone numbers.
+2. ID Number : We collect ID numbers provided by the college for identification purposes.
+3. Location Data (GPS Coordinates): We collect location data in the form of GPS coordinates to provide real-time bus tracking and suggest alternative buses.
+4. Profile Picture and Cover Picture : We collect new profile pictures and cover pictures uploaded by users to update their profiles.
+
+How We Use the Information
+
+Rove uses the collected personal information for the following purposes:
+
+1. Providing Services: We use the information to provide the services of Rove, including real-time bus tracking and suggesting alternative buses.
+2. Notification: We use the information to notify our users about the status of the buses.
+3. Legal Compliance: We use the information to comply with legal regulations and security measures to authorize the user.
+4. Profile Updates: We use the information to update the user's profile picture or cover picture on the application.
+5. Location Tracking: Users are required to keep their location on while using Rove to provide accurate location data.
+
+How We Protect User Information
+
+Rove takes the following measures to protect user information:
+
+1. Secure Servers: We store user information on secure servers to prevent unauthorized access.
+2. Access Control: We limit access to user information to authorized personnel only.
+3.  Regular Monitoring : We regularly monitor and test our security systems to ensure the integrity of user information.
+
+ Disclosure of User Information 
+
+Rove may disclose user information in the following circumstances:
+
+1.  Administrative Purposes : We may disclose user information to our administrators when required by law or for security purposes.
+2.  Service Provision : We may share user information with third-party service providers to provide services requested by users, such as sharing live location data with administrators.
+3.  Third-Party Disclosure : We do not share or disclose user information related to editing profile pictures or covers to third parties.
+
+ Changes to This Policy 
+
+Rove reserves the right to modify this privacy policy at any time without notice. Users are responsible for reviewing this policy periodically for any changes.
+
+ Contact Us 
+
+If you have any questions or concerns about this privacy policy, please contact us at rove.instance@gmail.com.
+
+ Effective Date 
+
+This privacy policy is effective as of 9th May, 2024 and will remain in effect until modified or replaced.''',
               textAlign: TextAlign.justify,
               style: TextStyle(
                 fontSize: 16,
