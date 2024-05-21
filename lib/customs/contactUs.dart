@@ -2,22 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:rove/utils/colors.dart';
 
 class ContactUs extends StatelessWidget {
-  // final String myNameText;
-  // final String myImage;
-  // final String myDescriptionText;
+  final TextEditingController nameController;
+  final TextEditingController subjectController;
+  final TextEditingController messageController;
 
-  // const ContactUs({
-  //   super.key,
-  //   required this.myImage,
-  //   required this.myNameText,
-  //   required this.myDescriptionText,
-  // });
+  const ContactUs({
+    super.key,
+    required this.nameController,
+    required this.subjectController,
+    required this.messageController,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         TextFormField(
+          controller: subjectController,
           maxLines: null,
           decoration: InputDecoration(
             hintText: "Subject",
@@ -30,6 +31,7 @@ class ContactUs extends StatelessWidget {
         ),
         TextFormField(
           maxLines: null,
+          controller: messageController,
           decoration: InputDecoration(
             hintText: "Write here...",
             border: OutlineInputBorder(

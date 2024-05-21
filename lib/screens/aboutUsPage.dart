@@ -7,7 +7,6 @@ import 'package:rove/utils/colors.dart';
 import 'package:rove/utils/textTheme.dart';
 
 class AboutUsPage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -43,7 +42,7 @@ class AboutUsPage extends StatelessWidget {
                     myImage: "assets/images/priyanshu.jpg",
                     myNameText: "Priyanshu Kumar",
                     myDescriptionText:
-                        "Id nostrud nostrud   Reprehenderit ut aute pariatur sit deserunt aliquip occaecat voluptate duis officia culpa. Adipisicing mollit culpa ex eu amet. Laboris irure cillum sit commodo tempor incididunt elit ipsum excepteur cillum dolore adipisicing velit. Culpa voluptate ipsum pariatur est laboris tempor fugiat dolor amet nostrud do exercitation ipsum. Mollit cillum pariatur ut consectetur sit enim."),
+                        "I'm a dedicated Flutter developer and designer with expertise in Flutter Dart and Figma. I've led the design and development of this app, creating visually appealing interfaces and efficient code.\nUsing Figma, I crafted user-friendly designs, paying attention to detail for a seamless user experience. My Flutter Dart skills brought these designs to life, ensuring a smooth app experience on both iOS and Android."),
                 SizedBox(
                   height: 20,
                 ),

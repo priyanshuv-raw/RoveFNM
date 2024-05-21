@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rove/screens/driverHomeScreen.dart';
-import 'package:rove/screens/homeScreen.dart';
 import 'package:rove/screens/onBoardingPage1.dart';
-import 'package:rove/screens/userLoginPage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -38,6 +35,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: HomeScreen());
+    return Scaffold(body: BoardingPage1());
   }
 }

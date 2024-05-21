@@ -6,9 +6,26 @@ import 'package:rove/screens/notificationPage.dart';
 import 'package:rove/screens/menuPage.dart';
 import 'package:rove/utils/colors.dart';
 import 'package:rove/utils/textTheme.dart';
+import 'dart:async';
 
-class ContactUsPage extends StatelessWidget {
+class ContactUsPage extends StatefulWidget {
+  @override
+  _ContactUsPageState createState() => _ContactUsPageState();
+}
 
+class _ContactUsPageState extends State<ContactUsPage> {
+  final _nameController = TextEditingController();
+  final _subjectController = TextEditingController();
+  final _messageController = TextEditingController();
+  bool _showSuccessText = false;
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _subjectController.dispose();
+    _messageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,15 +60,26 @@ class ContactUsPage extends StatelessWidget {
                     SizedBox(
                       height: 20,
                     ),
-                    ContactUs(),
+                    ContactUs(
+                      nameController: _nameController,
+                      subjectController: _subjectController,
+                      messageController: _messageController,
+                    ),
                     SizedBox(
                       height: 20,
                     ),
                     MyButton(
-                        onTap: () {},
-                        myButtonColor: AppColors.primaryColor,
-                        myButtonText: "Submit",
-                        myButtonTextColor: Colors.white),
+                      onTap: () {
+                        _nameController.clear();
+                        _subjectController.clear();
+                        _messageController.clear();
+                        _showSuccessMessage();
+                      },
+                      myButtonColor: AppColors.primaryColor,
+                      myButtonText:
+                          _showSuccessText ? "✅ Message Submitted" : "Submit",
+                      myButtonTextColor: Colors.white,
+                    ),
                   ],
                 ),
               )
@@ -60,5 +88,16 @@ class ContactUsPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _showSuccessMessage() {
+    setState(() {
+      _showSuccessText = true;
+    });
+    Timer(Duration(seconds: 2), () {
+      setState(() {
+        _showSuccessText = false;
+      });
+    });
   }
 }
